@@ -7,6 +7,25 @@
   <maven.compiler.source>1.8</maven.compiler.source>
   <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+  
+<distributionManagement>
+
+<snapshot>
+
+<id>nexus-snapshots</id>
+
+<url>http://localhost:8081/repository/maven-snapshots/</url>
+
+</snapshot>
+<releases>
+
+<id>nexus-releases</id>
+
+<url>http://localhost:8081/repository/maven-releases/</url>
+
+</releases>
+
+</distributionManagement>
   <dependencies>
   <!-- https://mvnrepository.com/artifact/junit/junit -->
 <dependency>
@@ -17,35 +36,4 @@
 </dependency>
   
   </dependencies>
-</project>
-<project …>
-
-<distributionManagement>
-
-<snapshot>
-
-<id>nexus-snapshots</id>
-
-<url>http://localhost:8081/repository/maven-snapshots/</url>
-
-</snapshot>
-
-</distributionManagement>
-
-</project>
-
-<project …>
-
-<distributionManagement>
-
-<releases>
-
-<id>nexus-releases</id>
-
-<url>http://localhost:8081/repository/maven-releases/</url>
-
-</releases>
-
-</distributionManagement>
-
 </project>
