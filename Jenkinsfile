@@ -8,7 +8,7 @@ pipeline
         {
             steps 
             {
-                echo 'Project starts from here'
+                echo 'Project starts from here11'
             }
         }
         stage('checkout')
