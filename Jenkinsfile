@@ -4,18 +4,11 @@ pipeline
 
     stages 
     {
-        stage('start') 
-        {
-            steps 
-            {
-                echo 'Project starts from here11'
-            }
-        }
         stage('checkout')
         {
             steps
             {
-                checkout([$class: 'GitSCM', branches: [[name: '*/Sonartest']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Yj8055/MavenDemo.git']]])
+                git 'https://github.com/Yj8055/MavenDemo.git'
             }
         }
         stage('build')
@@ -25,6 +18,13 @@ pipeline
                 bat "mvn clean"
             }
         }
+        stage('Test')
+        {
+            steps
+            {
+                bat "mvn test compile"
+            }
+        }
         stage('package')
         {
             steps
@@ -32,21 +32,33 @@ pipeline
                 bat "mvn package"
             }
         }
-        stage('sonartest')
+        stage('Deploy')
         {
-            steps{
-                withSonarQubeEnv('SonarQubeDefault') {
-                bat 'mvn sonar:sonar'
-              }
+            steps
+            {
+                bat "mvn deploy"
             }
         }
-        stage("Quality Gate") {
-            steps {
-              timeout(time: 1, unit: 'HOURS') {
+        stage('sonartest')
+        {
+            steps
+            {
+                withSonarQubeEnv('SonarQubeDefault')
+                {
+                bat 'mvn sonar:sonar'
+                }
+            }
+        }
+        stage("Quality Gate") 
+        {
+            steps
+            {
+              timeout(time: 1, unit: 'HOURS') 
+              {
                 waitForQualityGate abortPipeline: true
               }
             }
-          }
+        }
         stage('success')
         {
             steps
