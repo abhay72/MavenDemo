@@ -49,7 +49,7 @@ pipeline
                 }
             }
         }
-        stage("Quality Gate1") 
+        stage("Quality Gate") 
         {
             steps
             {
