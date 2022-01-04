@@ -22,7 +22,7 @@ pipeline
         {
             steps
             {
-                bat "mvn test"
+                bat "mvn test compile"
             }
         }
         stage('package')
